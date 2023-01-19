@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genie - Customer Support & Back Office</title>
+  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L69ETWC3GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L69ETWC3GM');
+</script>
+</head>
+  <body
+    x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'b eh': darkMode === true}"
+  >
+    <!-- ===== Header Start ===== -->
+    <header
+  class="g s r vd ya cj"
+  :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
+  @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false"
+>
+  <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
+    <div class="vd to/4 tc wf yf">
+      <a href="index.html">
+        <img class="om" src="images/9.png" alt="Logo Light" style="height: 30px;"/>
+        <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" style="height: 30px" />
+      </a>
+
+      <!-- Hamburger Toggle BTN -->
+      <button class="po rc" @click="navigationOpen = !navigationOpen">
+        <span class="rc i pf re pd">
+          <span class="du-block h q vd yc">
+            <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
+            <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+            <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
+          </span>
+          <span class="du-block h q vd yc lf">
+            <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
+            <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
+          </span>
+        </span>
+      </button>
+      <!-- Hamburger Toggle BTN -->
+    </div>
+
+    <div
+      class="vd wo/4 sd qo f ho oo wf yf"
+      :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
+    >
+      <nav>
+        <ul class="tc _o sf yo cg ep">
+          <li><a href="index.html" id="nav-button" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
+          <li><a href="#section-2" class="xl" id="nav-button">Nosotros</a></li>
+          <li><a href="#section-3" class="xl" id="nav-button">Industrias</a></li>
+          <li><a href="#section-4" class="xl" id="nav-button">Precios</a></li>
+          <li><a href="index.html#support" class="xl" id="nav-button" >Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="tc wf ig pb no">
+        <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
+          <label class="rc ab i">
+            <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
+            <!-- Icon Sun -->
+            <svg :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }" class="th om" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z" fill=""/>
+            </svg>
+            <!-- Icon Sun -->
+            <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
+          </label>
+        </div>
+
+        <a href="https://api.whatsapp.com/send/?phone=18099417444&text=Hola+Genie%21&type=phone_number&app_absent=0" :class="{ 'hh/[0.15]' : page === 'home', 'sh' : page === 'home' && stickyMenu }" class="lk gh dk rg tc wf xf _l gi hi">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+    <!-- ===== Header End ===== -->
+
+    <main>
+      <!-- ===== Hero Start ===== -->
+      <section class="gj do ir hj sp jr i pg">
+        <!-- Hero Images -->
+        <div class="xc fn zd/2 2xl:ud-w-187.5 bd 2xl:ud-h-171.5 h q r">
+          <img src="images/shape-01.svg" alt="shape" class="xc 2xl:ud-block h t -ud-left-[10%] ua" />
+          <img src="images/shape-02.svg" alt="shape" class="xc 2xl:ud-block h u p va" />
+          <img src="images/shape-03.svg" alt="shape" class="xc 2xl:ud-block h v w va" />
+          <img src="images/shape-04.svg" alt="shape" class="h q r" />
+          <img src="images/hero.png" alt="Woman" class="h q r ua" />
+        </div>
+
+        <!-- Hero Content -->
+        <div class="bb ze ki xn 2xl:ud-px-0">
+          <div class="tc _o">
+            <div class="animate_left jn/2">
+              <h1 class="fk vj zp or kk wm wb">Customer Support & Back Office para tu negocio.</h1>
+              <p class="fq">
+               Mejoramos la experiencia digital de tus clientes ofreciéndote apoyo en las tareas administrativas y operativas de tu negocio, utilizando la tecnología e integrándonos en cuerpo y alma a tu equipo, lograremos que tu negocio crezca contigo ¡Será un match instantáneo!
+              </p>
+
+              <div class="tc tf yo zf mb">
+                <a href="https://api.whatsapp.com/send/?phone=18099417444&text=Hola+Genie%21&type=phone_number&app_absent=0" class="ek jk lk gh gi hi rg ml il vc _d _l" style="background: #457B9d;"
+                  >Contáctanos</a
+                >
+
+                <span class="tc sf">
+                  <a href="#" class="inline-block ek xj kk wm"> Escríbenos hoy</a>
+                  <span class="inline-block">Respondemos todas tus dudas</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+      <!-- ===== Hero End ===== -->
+
+      <!-- ===== Small Features Start ===== -->
+      
+      <section id="features">
+        <div class="bb ze ki yn 2xl:ud-px-12.5">
+          
+          <div class="tc uf zo xf ap zf bp mq" >
+            <!-- Small Features Item -->
+            
+            <div class="animate_top kn to/3 tc cg oq" >
+              <div class="tc wf xf cf ae cd rg mh" style="background:#457B9D">
+                <img src="images/icon-01.svg" alt="Icon" />
+              </div>
+              <div>
+                <h4 class="ek yj go kk wm xb">Personas</h4>
+                <p>Nos volveremos personas apasionadas por tu producto/servicio y te ayudaremos a devolverle la sonrisa a tus clientes.</p>
+              </div>
+            </div>
+
+            <!-- Small Features Item -->
+            <div class="animate_top kn to/3 tc cg oq">
+              <div class="tc wf xf cf ae cd rg nh" style="background:#457B9D">
+                <img src="images/icon-02.png" alt="Icon" style="height: 2.5em"/>
+              </div>
+              <div>
+                <h4 class="ek yj go kk wm xb">Métricas</h4>
+                <p>Nos tomamos el tiempo de aprender qué métricas son más importantes para tu negocio, nos alineamos a ellas y creamos flujos de trabajo que nos ayuden cumplir con los KPI.</p>
+              </div>
+            </div>
+
+            <!-- Small Features Item -->
+            <div class="animate_top kn to/3 tc cg oq">
+              <div class="tc wf xf cf ae cd rg oh" style="background:#457B9D">
+                <img src="images/icon-03.svg" alt="Icon" />
+              </div>
+              <div>
+                <h4 class="ek yj go kk wm xb">Tecnología</h4>
+                <p>Nos aseguramos de utilizar las mejores herramientas del mercado para brindar la máxima eficiencia y una experiencia estelar a tus clientes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Small Features End ===== -->
+
+      <!-- ===== About Start ===== -->
+      <section class="ji gp uq 2xl:ud-py-35 pg" id="section-2">
+        <div class="bb ze ki xn wq">
+          <div class="tc wf gg qq">
+            <!-- About Images -->
+            <div class="animate_left xc gn gg jn/2 i">
+              <div>
+                <img src="images/shape-05.svg" alt="Shape" class="h -ud-left-5 x" />
+                <img src="images/about-01.png" alt="About" class="ib" />
+                <img src="images/about-02.png" alt="About" />
+              </div>
+              <div>
+                <img src="images/shape-06.svg" alt="Shape" />
+                <img src="images/about-03.png" alt="About" class="ob gb" />
+                <img src="images/shape-07.svg" alt="Shape" class="bb" />
+              </div>
+            </div>
+
+            <!-- About Content -->
+            <div class="animate_right jn/2">
+              <h4 class="ek yj mk gb">¿Por qué nosotros?</h4>
+              <h2 class="fk vj zp pr kk wm qb">Nos gusta ver a las personas felices 😁</h2>
+              <p class="uo">En un mundo cambiante y cada vez más enfocado en lo digital, Genie es el medio que conecta tu negocio con tus clientes. Con Genie, tu equipo de Customer Support estará siempre preparado para brindar un servicio personalizado, humano y eficiente, adaptándose a las nuevas tecnologías y combinando una atención individualizada que tanto se necesita en los negocios.</p>
+
+              <a href="https://www.youtube.com/watch?v=xcJtL7QggTI" data-fslightbox class="vc wf hg mb">
+                <span class="tc wf xf be dd rg i gh ua">
+                  <span class="nf h vc yc vd rg gh qk -ud-z-1"></span>
+                  <img src="images/icon-play.svg" alt="Play" />
+                </span>
+                <span class="kk" style="color: gray;">DALE PLAY!</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== About End ===== -->
+
+      <!-- ===== Team Start ===== -->
+      <!-- <section class="i pg ji gp uq"> -->
+        <!-- Bg Shapes -->
+        <!-- <span class="rc h s r vd fd/5 fh rm"></span>
+        <img src="images/shape-08.svg" alt="Shape Bg" class="h q r" />
+        <img src="images/shape-09.svg" alt="Shape" class="of h y z/2" />
+        <img src="images/shape-10.svg" alt="Shape" class="h _ aa" />
+        <img src="images/shape-11.svg" alt="Shape" class="of h m ba" /> -->
+
+        <!-- Section Title Start -->
+        <!-- <div
+          x-data="{ sectionTitle: `Conoce a nuestro equipo`, sectionTitleText: `Juntos contamos mas de 12 años de experiencia ofreciendo servicios a compañías locales e internacionales`}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div> -->
+
+
+        <!-- </div> -->
+        <!-- Section Title End -->
+
+        <!-- <div class="bb ze i va ki xn xq jb jo">
+          <div class="wc qf pn xo gg cp">
+            Team Item -->
+            <!-- <div class="animate_top rj">
+              <div class="c i pg z-1">
+                <img class="vd" src="images/team-ed.jpeg" alt="Team" style="height: auto" />
+
+                <div class="ef im nl il">
+                </div>
+              </div> -->
+<!-- 
+              <h4 class="yj go kk wm ob zb">Eduardo Lamarche</h4>
+              <p>Founder & CEO</p>
+            </div> -->
+
+            <!-- Team Item -->
+            
+
+            <!-- Team Item -->
+            <!-- <div class="animate_top rj">
+              <div class="c i pg z-1">
+                <img class="vd" src="images/team-01.png" alt="Team" />
+
+                <div class="ef im nl il">
+                  
+                </div>
+              </div>
+
+              <h4 class="yj go kk wm ob zb">Julia Gómez</h4>
+              <p>Head of Operations</p>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!-- ===== Team End ===== -->
+
+      <!-- ===== Services Start ===== -->
+      <section class="lj tp kr" id="section-3">
+        <!-- Section Title Start -->
+        <div
+          x-data="{ sectionTitle: `Ofrecemos nuestros servicios a todos estos sectores`, sectionTitleText: ``}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div>
+
+
+        </div>
+        <!-- Section Title End -->
+
+        <div class="bb ze ki xn yq mb en">
+          <div class="wc qf pn xo ng">
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/ecommerce.svg" alt="Icon" style="height: 45px;" />
+              <h4 class="ek zj kk wm nb _b">Retail & eCommerce</h4>
+              <p>La pandemia trajo consigo nuevos retos para el eCommerce, ya no solo se basa en tener buenos productos y servicios, sino que los clientes exigen y esperan tiempos de respuesta más rápidos para sus consultas y calidad en el servicio al cliente.</p>
+            </div>
+
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/icon-05.svg" alt="Icon" />
+              <h4 class="ek zj kk wm nb _b">FinTech</h4>
+              <p>La cantidad de usuarios que utilizan servicios financieros a través de una App va en aumento. La mejor y única manera de generar confianza con tus clientes es a través de un Customer Support eficiente.</p>
+            </div>
+
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/health.svg" alt="Icon" style="height: 50px;"/>
+              <h4 class="ek zj kk wm nb _b">Health & Wellness</h4>
+              <p>Este es uno de los sectores con más crecimiento en los últimos años. Es sumamente delicado y personal. Por lo que tus clientes te pedirán atencion constante y rapidez cuando necesiten ayuda.</p>
+            </div>
+
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/icon-07.svg" alt="Icon" />
+              <h4 class="ek zj kk wm nb _b">SaaS</h4>
+              <p>Nosotros sabemos el tiempo y el esfuerzo que toma construir un Software de calidad, pero esto ya no es suficiente, ya que si no cuentas con un Customer Support que te ayude a mejorar continuamente, la competencia te comerá vivo.</p>
+            </div>
+
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/law.svg" alt="Icon" style="height: 50px;"/>
+              <h4 class="ek zj kk wm nb _b">Profesionales Independientes</h4>
+              <p>Abogados, contadores, odontólogos, psicólogos y administradores. Todos necesitan soporte con las consultas y requerimientos de sus clientes, nosotros estamos aquí para ayudarte. </p>
+            </div>
+
+            <!-- Service Item -->
+            <div class="animate_top sg oi pi zq ml il am cn _m">
+              <img src="images/icon-06.svg" alt="Icon" />
+              <h4 class="ek zj kk wm nb _b">Pymes & Startups</h4>
+              <p>Tener tu propiio negocio es difícil. Requiere de mucho esfuerzo y sacrificio, y te obliga a aprender sobre ventas, contabilidad, derecho y atención al cliente, pero si no le dedicas tu tiempo a lo que realmente importa, nunca podrás alcanzar el éxito. Nosotros podemos ser tus Partners y ayudarte a alcanzarlo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Services End ===== -->
+
+      <!-- ===== Pricing Table Start ===== -->
+      <!-- <section x-data="setup()" class="i pg fh rm ji gp uq">
+        <!-- Bg Shapes -->
+        <!-- <img src="images/shape-06.svg" alt="Shape" class="h aa y" />
+        <img src="images/shape-03.svg" alt="Shape" class="h ca u" />
+        <img src="images/shape-07.svg" alt="Shape" class="h w da ee" />
+        <img src="images/shape-12.svg" alt="Shape" class="h p s" />
+        <img src="images/shape-13.svg" alt="Shape" class="h r q" /> -->
+
+       
+
+        <!-- Section Title End -->
+
+        
+      
+      <!-- ===== Projects End ===== -->
+
+      <!-- ===== Testimonials Start ===== -->
+      <!-- <section class="hj rp hr"> -->
+        <!-- Section Title Start -->
+        <!-- <div
+          x-data="{ sectionTitle: `Testimonios`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div> -->
+
+
+        <!-- </div> -->
+        <!-- Section Title End -->
+
+        <!-- <div class="bb ze ki xn ar">
+          <div class="animate_top jb cq">
+            Slider main container
+            <div class="swiper testimonial-01">
+              Additional required wrapper
+              <div class="swiper-wrapper">
+                Slides
+                <div class="swiper-slide">
+                  <div class="i hh rm sg vk xm bi qj">
+                    Border Shape
+                    <span class="rc je md/2 gh xg h q r"></span>
+                    <span class="rc je md/2 mh yg h q p"></span> -->
+
+                    <!-- <div class="tc sf rn tn un zf dp">
+                      <img class="bf" src="images/testimonial.png" alt="User" />
+
+                      <div>
+                        <img src="images/icon-quote.svg" alt="Quote" />
+                        <p class="ek ik xj _p kc fb">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dolor diam, feugiat quis enim sed, ullamcorper semper ligula. Mauris consequat justo volutpat.
+                        </p>
+
+                        <div class="tc yf vf">
+                          <div>
+                            <span class="rc ek xj kk wm zb">Devid Smith</span>
+                            <span class="rc">Founter @democompany</span>
+                          </div>
+
+                          <img class="rk" src="images/brand-light-02.svg" alt="Brand" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- If we need navigation -->
+              <!-- <div class="tc wf xf fg jb">
+                <div
+                  class="swiper-button-prev c tc wf xf ie ld rg _g dh pf ml vr hh rm tl zm rl ym"
+                >
+                  <svg class="th lm" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M3.52366 7.83336L7.99366 12.3034L6.81533 13.4817L0.333663 7.00002L6.81533 0.518357L7.99366 1.69669L3.52366 6.16669L13.667 6.16669L13.667 7.83336L3.52366 7.83336Z"
+                      fill=""
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="swiper-button-next c tc wf xf ie ld rg _g dh pf ml vr hh rm tl zm rl ym"
+                >
+                  <svg class="th lm" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" fill="" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!-- ===== Testimonials End ===== -->
+
+      <!-- ===== Counter Start ===== -->
+      <section class="i pg qh rm ji hp">
+        <img src="images/shape-11.svg" alt="Shape" class="of h ga ha ke" />
+        <img src="images/shape-07.svg" alt="Shape" class="h ia o ae jf" />
+        <img src="images/shape-14.svg" alt="Shape" class="h ja ka" />
+        <img src="images/shape-15.svg" alt="Shape" class="h q p" />
+
+        <div class="bb ze i va ki xn br">
+          <div class="tc uf sn tn xf un gg">
+            <div class="animate_top me/5 ln rj">
+              <h2 class="gk vj zp or kk wm hc">13 mins</h2>
+              <p class="ek bk aq">Tiempo de Respuesta (Avg)</p>
+            </div>
+            <div class="animate_top me/5 ln rj">
+              <h2 class="gk vj zp or kk wm hc">8</h2>
+              <p class="ek bk aq">Clientes Felices</p>
+            </div>
+            <div class="animate_top me/5 ln rj">
+              <h2 class="gk vj zp or kk wm hc">3</h2>
+              <p class="ek bk aq">Empleados</p>
+            </div>
+            <div class="animate_top me/5 ln rj">
+              <h2 class="gk vj zp or kk wm hc">2,000+</h2>
+              <p class="ek bk aq">Clientes atendidos</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Counter End ===== -->
+
+      <!-- ===== Clients Start ===== -->
+      <!-- <section class="pj vp mr">
+        Section Title Start
+        <div
+          x-data="{ sectionTitle: `Trusted by Global Brands`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div>
+
+
+        </div> -->
+        <!-- Section Title End -->
+
+        <!-- <div class="bb ze ah ch pm hj xp ki xn 2xl:ud-px-49 bc">
+          <div class="wc rf qn zf cp kq xf wf">
+            <a href="#" class="rc animate_top">
+              <img class="th wl ml il zl om" src="images/brand-light-01.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-01.svg" alt="Clients" />
+            </a>
+            <a href="#" class="rc animate_top">
+              <img class="tk ml il zl om" src="images/brand-light-02.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-02.svg" alt="Clients" />
+            </a>
+            <a href="#" class="rc animate_top">
+              <img class="tk ml il zl om" src="images/brand-light-03.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-03.svg" alt="Clients" />
+            </a>
+            <a href="#" class="rc animate_top">
+              <img class="tk ml il zl om" src="images/brand-light-04.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-04.svg" alt="Clients" />
+            </a>
+            <a href="#" class="rc animate_top">
+              <img class="tk ml il zl om" src="images/brand-light-05.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-05.svg" alt="Clients" />
+            </a>
+            <a href="#" class="rc animate_top">
+              <img class="tk ml il zl om" src="images/brand-light-06.svg" alt="Clients" />
+              <img class="xc sk ml il zl nm" src="images/brand-dark-06.svg" alt="Clients" />
+            </a>
+          </div>
+        </div>
+      </section> -->
+      <!-- ===== Clients End ===== -->
+
+      <!-- ===== Blog Start ===== -->
+      <!-- <section class="ji gp uq">
+        Section Title Start -->
+        <!-- <div
+          x-data="{ sectionTitle: `Latest Blogs & News`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div> -->
+
+
+        <!-- </div> -->
+        <!-- Section Title End -->
+
+        <!-- <div class="bb ye ki xn vq jb jo">
+          <div class="wc qf pn xo zf iq"> -->
+            <!-- Blog Item -->
+            <!-- <div class="animate_top sg vk rm xm">
+              <div class="c rc i z-1 pg">
+                <img class="w-full" src="images/blog-01.png" alt="Blog" />
+
+                <div
+                  class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
+                >
+                  <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+
+              <div class="yh">
+                <div class="tc uf wf ag jq">
+                  <div class="tc wf ag">
+                    <img src="images/icon-man.svg" alt="User" />
+                    <p>Musharof Chy</p>
+                  </div>
+                  <div class="tc wf ag">
+                    <img src="images/icon-calender.svg" alt="Calender" />
+                    <p>25 Dec, 2025</p>
+                  </div>
+                </div>
+                <h4 class="ek tj ml il kk wm xl eq lb">
+                  <a href="blog-single.html">Free advertising for your online business</a>
+                </h4>
+              </div>
+            </div> -->
+
+            <!-- Blog Item -->
+            <!-- <div class="animate_top sg vk rm xm">
+              <div class="c rc i z-1 pg">
+                <img class="w-full" src="images/blog-02.png" alt="Blog" />
+
+                <div
+                  class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
+                >
+                  <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+
+              <div class="yh">
+                <div class="tc uf wf ag jq">
+                  <div class="tc wf ag">
+                    <img src="images/icon-man.svg" alt="User" />
+                    <p>Musharof Chy</p>
+                  </div>
+                  <div class="tc wf ag">
+                    <img src="images/icon-calender.svg" alt="Calender" />
+                    <p>25 Dec, 2025</p>
+                  </div>
+                </div>
+                <h4 class="ek tj ml il kk wm xl eq lb">
+                  <a href="blog-single.html">9 simple ways to improve your design skills</a>
+                </h4>
+              </div>
+            </div> -->
+
+            <!-- Blog Item -->
+            <!-- <div class="animate_top sg vk rm xm">
+              <div class="c rc i z-1 pg">
+                <img class="w-full" src="images/blog-03.png" alt="Blog" />
+
+                <div
+                  class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
+                >
+                  <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+
+              <div class="yh">
+                <div class="tc uf wf ag jq">
+                  <div class="tc wf ag">
+                    <img src="images/icon-man.svg" alt="User" />
+                    <p>Musharof Chy</p>
+                  </div>
+                  <div class="tc wf ag">
+                    <img src="images/icon-calender.svg" alt="Calender" />
+                    <p>25 Dec, 2025</p>
+                  </div>
+                </div>
+                <h4 class="ek tj ml il kk wm xl eq lb">
+                  <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!-- ===== Blog End ===== -->
+
+      <!-- ===== Contact Start ===== -->
+      <section id="support" class="i pg fh rm ji gp uq">
+        <!-- Bg Shapes -->
+        <img src="images/shape-06.svg" alt="Shape" class="h aa y" />
+        <img src="images/shape-03.svg" alt="Shape" class="h ca u" />
+        <img src="images/shape-07.svg" alt="Shape" class="h w da ee" />
+        <img src="images/shape-12.svg" alt="Shape" class="h p s" />
+        <img src="images/shape-13.svg" alt="Shape" class="h r q" />
+
+        <!-- Section Title Start -->
+        <div
+          x-data="{ sectionTitle: `Contacto`, sectionTitleText: `Estas son todas las vías por las cuales puedes contactarnos`}"
+        >
+          <div class="animate_top bb ze rj ki xn vq">
+    <h2
+            x-text="sectionTitle"
+            class="fk vj pr kk wm on/5 gq/2 bb _b"
+    >
+    </h2>
+    <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+</div>
+
+
+        </div>
+        <!-- Section Title End -->
+
+        <div class="i va bb ye ki xn wq jb mo">
+          <div class="tc uf sn tf rn un zf xl:gap-10">
+            <div class="animate_top w-full mn/5 to/3 vk sg hh sm yh rq i pg">
+              <!-- Bg Shapes -->
+              <img src="images/shape-03.svg" alt="Shape" class="h la x wd" />
+              <img src="images/shape-06.svg" alt="Shape" class="h la ma ne kf" />
+
+              <div class="fb">
+                <h4 class="wj kk wm cc">Correo Electrónico</h4>
+                <p><a href="#">hola@genie.com.do</a></p>
+              </div>
+              <div class="fb">
+                <h4 class="wj kk wm cc">Dirección</h4>
+                <p>Calle N, No. 3, Viejo Arroyo Hondo, Distrito Nacional, República Dominicana</p>
+              </div>
+              <div class="fb">
+                <h4 class="wj kk wm cc">Teléfono</h4>
+                <p><a href="#">+1 (809) 941-7444</a></p>
+              </div>
+
+              <span class="rc nd rh tm lc fb"></span>
+
+              <div>
+                <h4 class="wj kk wm qb">Redes Sociales</h4>
+                <ul class="tc wf fg">
+                  <li>
+                    <a href="https://instagram.com/genie.do" target="_blank" class="c tc wf xf ie ld rg ml il tl">
+                      <img src="/images/instagram.svg" style="height: 25px;" alt="" srcset="">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="c tc wf xf ie ld rg ml il tl">
+                      <svg class="th lm ml il" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M4.36198 2.58327C4.36174 3.0695 4.16835 3.53572 3.82436 3.87937C3.48037 4.22301 3.01396 4.41593 2.52773 4.41569C2.0415 4.41545 1.57528 4.22206 1.23164 3.87807C0.887991 3.53408 0.69507 3.06767 0.695313 2.58144C0.695556 2.09521 0.888943 1.62899 1.23293 1.28535C1.57692 0.941701 2.04333 0.748781 2.52956 0.749024C3.01579 0.749267 3.48201 0.942654 3.82566 1.28664C4.1693 1.63063 4.36222 2.09704 4.36198 2.58327ZM4.41698 5.77327H0.750313V17.2499H4.41698V5.77327ZM10.2103 5.77327H6.56198V17.2499H10.1736V11.2274C10.1736 7.87244 14.5461 7.56077 14.5461 11.2274V17.2499H18.167V9.98077C18.167 4.32494 11.6953 4.53577 10.1736 7.31327L10.2103 5.77327Z"
+                          fill=""
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="c tc wf xf ie ld rg ml il tl">
+                      <img src="/images/tiktok.svg" style="height: 20px;" alt="" srcset="">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="animate_top w-full nn/5 vo/3 vk sg hh sm yh tq">
+              <form action="https://formbold.com/s/unique_form_id" method="POST">
+                <div class="tc sf yo ap zf ep qb">
+                  <div class="vd to/2">
+                    <label class="rc ac" for="fullname">Nombre Completo</label>
+                    <input
+                      type="text"
+                      name="fullname"
+                      id="fullname"
+                      placeholder="Juan Pérez"
+                      class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+                    />
+                  </div>
+
+                  <div class="vd to/2">
+                    <label class="rc ac" for="email">Correo Electrónico</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="juanperez@gmail.com"
+                      class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+                    />
+                  </div>
+                </div>
+
+                <div class="tc sf yo ap zf ep qb">
+                  <div class="vd to/2">
+                    <label class="rc ac" for="phone">Teléfono</label>
+                    <input
+                      type="text"
+                      name="phone"
+                      id="phone"
+                      placeholder="+809 123 4567"
+                      class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+                    />
+                  </div>
+
+                  <div class="vd to/2">
+                    <label class="rc ac" for="subject">Asunto</label>
+                    <input
+                      type="text"
+                      for="subject"
+                      id="subject"
+                      placeholder="Ej. Cotización de Servicios"
+                      class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+                    />
+                  </div>
+                </div>
+
+                <div class="fb">
+                  <label class="rc ac" for="message">Mensaje</label>
+                  <textarea
+                    placeholder="Ingresa tu mensaje aquí"
+                    rows="4"
+                    name="message"
+                    id="message"
+                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci"
+                  ></textarea>
+                </div>
+
+                <div class="tc xf">
+                  <button class="vc rg lk gh ml il hi gi _l">Enviar mensaje</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Contact End ===== -->
+
+      <!-- ===== CTA Start ===== -->
+      <section class="i pg gh ji" id="section-4">
+  <!-- Bg Shape -->
+  <img class="h p q" src="images/shape-16.svg" alt="Bg Shape" />
+
+  <div class="bb ye i z-10 ki xn dr">
+    <div class="tc uf sn tn un gg">
+      <div class="animate_left to/2">
+        <h2 class="fk vj zp pr lk ac">
+          Desde <span>USD$ 300</span> dólares mensuales en adelante.
+        </h2>
+        <p class="lk">
+          Nos volveremos tu mano derecha y haremos un match instantáneo ¡Ya verás!
+        </p>
+      </div>
+      <div class="animate_right bf">
+        <a href="https://tr.ee/lsoCAlBixT" class="vc ek kk hh rg ol il cm gi hi">
+            Agendar Reunión
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <!-- ===== CTA End ===== -->
+    </main>
+    <!-- ===== Footer Start ===== -->
+    <footer>
+  <div class="bb ze ki xn 2xl:ud-px-0">
+    <!-- Footer Top -->
+    <div class="ji gp">
+      <div class="tc uf ap gg fp">
+        <div class="animate_top zd/2 to/4">
+          <a href="index.html">
+            <img src="images/9.png" alt="Logo" class="om" style="height: 30px;"/>
+            <img src="images/logo-dark.png" alt="Logo" class="xc nm" style="height: 30px;" />
+          </a>
+
+          <p class="lc fb">Growth-driven Customer Support and Back Office service provider focused on enhancing digital customer experience to help you meet your goals</p>
+
+          <ul class="tc wf cg">
+            <li>
+              <a href="https://instagram.com/genie.do" target="_blank" class="c tc wf xf ie ld rg ml il tl">
+                <img src="/images/instagram.svg" style="height: 25px;" alt="" srcset="">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_48_1505)">
+                    <path
+                      d="M6.94 5.00002C6.93974 5.53046 6.72877 6.03906 6.35351 6.41394C5.97825 6.78883 5.46944 6.99929 4.939 6.99902C4.40857 6.99876 3.89997 6.78779 3.52508 6.41253C3.1502 6.03727 2.93974 5.52846 2.94 4.99802C2.94027 4.46759 3.15124 3.95899 3.5265 3.5841C3.90176 3.20922 4.41057 2.99876 4.941 2.99902C5.47144 2.99929 5.98004 3.21026 6.35492 3.58552C6.72981 3.96078 6.94027 4.46959 6.94 5.00002ZM7 8.48002H3V21H7V8.48002ZM13.32 8.48002H9.34V21H13.28V14.43C13.28 10.77 18.05 10.43 18.05 14.43V21H22V13.07C22 6.90002 14.94 7.13002 13.28 10.16L13.32 8.48002Z"
+                      fill="#79808A"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_48_1505">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="c tc wf xf ie ld rg ml il tl">
+                <img src="/images/tiktok.svg" style="height: 20px;" alt="" srcset="">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="vd ro tc sf rn un gg vn">
+          
+
+         
+
+          <div class="animate_top">
+            <h4 class="kk wm tj ec">Enlaces rápidos</h4>
+
+            <ul>
+              <li><a href="#" class="sc xl vb">Home</a></li>
+              <li><a href="#" class="sc xl vb">Why Us</a></li>
+              <li><a href="#" class="sc xl vb">Industries</a></li>
+              <li><a href="#" class="sc xl vb">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="animate_top">
+            <h4 class="kk wm tj ec">Newsletter</h4>
+            <p class="ac qe">Suscribete y recibe actualizaciones en el futuro.</p>
+
+            <form action="https://dom.us13.list-manage.com/subscribe/post?u=c22c1936a31ab49cc85e8484f&amp;id=b06e4b73fe&amp;f_id=004628e2f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+              <div class="i">
+                
+                <input
+                  type="text"
+                  name="subscribe"
+                  id="mc-embedded-subscribe"
+                  placeholder="Correo Electrónico"
+                  class="vd sm _g ch pm vk xm rg gm dm dn gi mi"
+                />
+
+                <button class="h q fi">
+                  <svg class="th vm ul" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_48_1487)">
+                      <path
+                        d="M3.1175 1.17318L18.5025 9.63484C18.5678 9.67081 18.6223 9.72365 18.6602 9.78786C18.6982 9.85206 18.7182 9.92527 18.7182 9.99984C18.7182 10.0744 18.6982 10.1476 18.6602 10.2118C18.6223 10.276 18.5678 10.3289 18.5025 10.3648L3.1175 18.8265C3.05406 18.8614 2.98262 18.8792 2.91023 18.8781C2.83783 18.8769 2.76698 18.857 2.70465 18.8201C2.64232 18.7833 2.59066 18.7308 2.55478 18.6679C2.51889 18.6051 2.50001 18.5339 2.5 18.4615V1.53818C2.50001 1.46577 2.51889 1.39462 2.55478 1.33174C2.59066 1.26885 2.64232 1.2164 2.70465 1.17956C2.76698 1.14272 2.83783 1.12275 2.91023 1.12163C2.98262 1.12051 3.05406 1.13828 3.1175 1.17318ZM4.16667 10.8332V16.3473L15.7083 9.99984L4.16667 3.65234V9.16651H8.33333V10.8332H4.16667Z"
+                        fill=""
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_48_1487">
+                        <rect width="20" height="20" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Top -->
+
+    <!-- Footer Bottom -->
+    <div class="bh ch pm tc uf sf yo wf xf ap cg fp bj">
+      <div class="animate_top">
+        <ul class="tc wf gg">
+    
+          <li><a href="#" class="xl">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="animate_top">
+        <p>&copy; 2023 Genie. Todos los derechos reservados</p>
+      </div>
+    </div>
+    <!-- Footer Bottom -->
+  </div>
+  
+</footer>
+
+    <!-- ===== Footer End ===== -->
+
+    <!-- ====== Back To Top Start ===== -->
+    <button
+  class="xc wf xf ie ld vg sr gh tr g sa ta _a"
+  @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+  @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false"
+  :class="{ 'uc' : scrollTop }"
+>
+  <svg class="uh se qd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+  </svg>
+</button>
+
+    <!-- ====== Back To Top End ===== -->
+
+    <script>
+      //  Pricing Table
+      const setup = () => {
+        return {
+          isNavOpen: false,
+
+          billPlan: 'monthly',
+
+          plans: [
+            {
+              name: 'Starter',
+              price: {
+                monthly: 29,
+                annually: 29 * 12 - 199,
+              },
+              features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+            },
+            {
+              name: 'Growth Plan',
+              price: {
+                monthly: 59,
+                annually: 59 * 12 - 100,
+              },
+              features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+            },
+            {
+              name: 'Business',
+              price: {
+                monthly: 139,
+                annually: 139 * 12 - 100,
+              },
+              features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+            },
+          ],
+        };
+      };
+    </script>
+  <script defer src="bundle.js"></script>
+</body>
+</html>
